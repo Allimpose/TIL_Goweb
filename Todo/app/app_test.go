@@ -15,10 +15,14 @@ import (
 )
 
 func TestTodos(t *testing.T) {
+	getSesssionID = func(r *http.Request) string {
+		return "testsessionId"
+	}
 	os.Remove("./test.db")
 	assert := assert.New(t)
 	ah := MakeHandler("./test.db")
 	defer ah.Close()
+
 	ts := httptest.NewServer(ah)
 	defer ts.Close()
 	resp, err := http.PostForm(ts.URL+"/todos", url.Values{"name": {"Test todo"}})
@@ -49,7 +53,6 @@ func TestTodos(t *testing.T) {
 			assert.Equal("Test todo", t.Name)
 		} else if t.ID == id2 {
 			assert.Equal("Test todo2", t.Name)
-
 		} else {
 			assert.Error(fmt.Errorf("testID should be id1 or id2"))
 		}
@@ -85,5 +88,4 @@ func TestTodos(t *testing.T) {
 	for _, t := range todos {
 		assert.Equal(t.ID, id2)
 	}
-
 }
