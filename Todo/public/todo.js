@@ -43,6 +43,7 @@ $(function() {
             } else {
                 $self.removeAttr('checked');
             }
+    
             $self.closest("li").toggleClass('completed');
         })
     });

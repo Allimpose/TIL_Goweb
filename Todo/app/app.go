@@ -1,11 +1,12 @@
 package app
 
 import (
-	"TIL_GoWeb/Todo/model"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
+
+	"TIL_GoWeb/Todo/model"
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
@@ -85,7 +86,8 @@ func (a *AppHandler) Close() {
 
 func CheckSignin(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	// if request URL is /signin.html, then next()
-	if strings.Contains(r.URL.Path, "/signin") || strings.Contains(r.URL.Path, "/auth") {
+	if strings.Contains(r.URL.Path, "/signin") ||
+		strings.Contains(r.URL.Path, "/auth") {
 		next(w, r)
 		return
 	}

@@ -1,7 +1,6 @@
 package app
 
 import (
-	"TIL_GoWeb/Todo/model"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -10,6 +9,8 @@ import (
 	"os"
 	"strconv"
 	"testing"
+
+	"TIL_GoWeb/Todo/model"
 
 	"github.com/stretchr/testify/assert"
 )
